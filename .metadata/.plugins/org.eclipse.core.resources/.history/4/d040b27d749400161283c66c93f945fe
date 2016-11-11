@@ -1,0 +1,36 @@
+package exercise01;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class MesswertServer {
+	
+	private static final int PORT = 4713;
+	private static final int BUFSIZE = 508;
+
+	public static void main(String[] args) {
+		try (DatagramSocket socket = new DatagramSocket(PORT)) {
+			DatagramPacket packetIn = new DatagramPacket(new byte[BUFSIZE], BUFSIZE);
+
+			System.out.println("Messwert server is running...");
+
+			while (true) {
+				
+				socket.receive(packetIn);
+				System.out.println("Received: " + packetIn.getLength() + " bytes");
+				System.out.println(packetIn.getAddress());
+					
+					
+					
+			}
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+
+	}
+
+}
