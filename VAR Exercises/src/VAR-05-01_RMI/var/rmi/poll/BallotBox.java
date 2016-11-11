@@ -44,6 +44,9 @@ public class BallotBox extends UnicastRemoteObject implements BallotBoxInterface
 	}
 
 	public static void main(String args[]) throws RemoteException, MalformedURLException  {
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
 		LocateRegistry.createRegistry(1099);
 		Naming.rebind("//localhost:1099/umfrage4711", new BallotBox());
 	}
