@@ -1,0 +1,44 @@
+package exercise01;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+public class MesswertClient {
+	
+	private static final String HOST = "localhost";
+	private static final int PORT = 4712;
+	private static final int BUFSIZE = 508;
+	private static final int TIMEOUT = 2000;
+	
+	public static void main(String[] args) {
+		
+		
+		try(DatagramSocket socket = new DatagramSocket()) {
+			InetAddress address = InetAddress.getByName(HOST); 
+			socket.setSoTimeout(TIMEOUT);
+			String time = "";
+			byte[] timeData = time.getBytes();
+			DatagramPacket sysTime = new DatagramPacket(timeData, timeData.length, address, PORT);
+			socket.send(sysTime);
+			
+		} catch (SocketException e) {
+			System.err.println("Timeout: " + e.getMessage());
+		} catch (UnknownHostException e) {
+			System.err.println("Unknown Host: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("IO Exception: " + e.getMessage());
+		}
+		
+	}
+
+/**
+ * @return A random number as a double 
+ * */
+private double getRandomNumber() {
+	return Math.random();
+}
+}

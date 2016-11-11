@@ -1,0 +1,13 @@
+package exercise01;
+
+public class MesswertServer {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

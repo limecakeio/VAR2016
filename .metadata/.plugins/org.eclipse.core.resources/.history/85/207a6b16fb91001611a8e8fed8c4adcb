@@ -1,0 +1,29 @@
+package exercise01;
+
+import java.net.InetAddress;
+import java.net.DatagramSocket;
+import java.net.SocketAddress;
+
+public class PortScanner {
+	
+	PortScanner() {
+		try(DatagramSocket socket = new DatagramSocket()){
+			int currentPort = socket.getLocalPort();
+			System.out.println("The initial port is: " + currentPort);
+			
+			InetAddress currentAddress = socket.getLocalAddress();
+			byte[] encodedAddress = currentAddress.getAddress();
+			
+			String decodedAddress = "";
+			for(int i = 0; i < encodedAddress.length; i++) {
+				decodedAddress += (char)encodedAddress[i];
+			}
+			System.out.println("The initial Address is: " +currentAddress);
+			
+			
+		} catch (Exception E) {
+			System.err.println("Failed.");
+		}
+	}
+	
+}
