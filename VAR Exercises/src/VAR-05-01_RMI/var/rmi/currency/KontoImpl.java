@@ -58,6 +58,9 @@ public class KontoImpl extends UnicastRemoteObject implements KontoInterface {
 	}
 	
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
 		//NOTE the registry should be initiated by the bank, accounts cannot exist without a bank
 		Naming.rebind("//localhost:1099/investor", new KontoImpl());
 		Naming.rebind("//localhost:1099/shark", new KontoImpl());

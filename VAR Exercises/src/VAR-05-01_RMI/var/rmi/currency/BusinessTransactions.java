@@ -18,17 +18,31 @@ public class BusinessTransactions {
 			bank.registerKonto("Gordon", shark);
 			
 			investor.depositGeld(new Geld(200, Waehrung.DKK));
-			investor.getBalance(Waehrung.DKK);
 			investor.depositGeld(new Geld(3000, Waehrung.AUD));
 			investor.depositGeld(new Geld(1500, Waehrung.NOK));
+			System.out.println("Investor account balances: ");
+			for(int i = 0; i < investor.getBalances().length; i++)
+				System.out.println(investor.getBalances()[i].toString());
+			
 			
 			shark.depositGeld(new Geld(2000000, Waehrung.USD));
 			shark.depositGeld(new Geld(4000000, Waehrung.AUD));
 			shark.depositGeld(new Geld(17000000, Waehrung.NOK));
 			shark.depositGeld(new Geld(300000, Waehrung.EUR));
 			shark.depositGeld(new Geld(5000000, Waehrung.DKK));
+			System.out.println("Gecko account balances: ");
+			for(int i = 0; i < shark.getBalances().length; i++)
+				System.out.println(shark.getBalances()[i].toString());
 			
 			bank.transferMoney(2000, Waehrung.DKK, "Joe", "Gordon");
+			
+			System.out.println("Investor account balances: ");
+			for(int i = 0; i < investor.getBalances().length; i++)
+				System.out.println(investor.getBalances()[i].toString());
+			
+			System.out.println("Gecko account balances: ");
+			for(int i = 0; i < shark.getBalances().length; i++)
+				System.out.println(shark.getBalances()[i].toString());
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			e.printStackTrace();

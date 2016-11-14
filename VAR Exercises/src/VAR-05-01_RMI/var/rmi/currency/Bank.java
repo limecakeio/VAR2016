@@ -34,6 +34,9 @@ public class Bank extends UnicastRemoteObject implements BankInterface {
 	}
 
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
 		LocateRegistry.createRegistry(1099);
 		Naming.rebind("//localhost:1099/bank", new Bank());
 	}

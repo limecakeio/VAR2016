@@ -21,11 +21,11 @@ public interface KontoInterface extends Remote {
 	/**
 	 * @return The all balances in the current account as an array of Geld
 	 * */
-	public Geld[] getBalances();
+	public Geld[] getBalances() throws RemoteException;
 	
 	/**
 	 * @return - A specific balance based on the Waehrung as a Geld object
 	 * */
-	public Geld getBalance(Waehrung currency);
+	public Geld getBalance(Waehrung currency) throws RemoteException;
 
 }
